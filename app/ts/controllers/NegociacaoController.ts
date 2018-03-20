@@ -21,7 +21,5 @@ class NegociacaoController {
         )
 
         this._negociacoes.adiciona(negociacao)
-
-        this._negociacoes.paraArray().map(negociacao => console.log(negociacao)) 
     }
 }
