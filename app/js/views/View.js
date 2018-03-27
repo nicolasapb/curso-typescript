@@ -28,7 +28,7 @@ System.register(["../helpers/decorators/logarTempoDeExecucao"], function (export
                 }
             };
             __decorate([
-                logarTempoDeExecucao_1.logarTempoDeExecucao()
+                logarTempoDeExecucao_1.logarTempoDeExecucao(true)
             ], View.prototype, "update", null);
             exports_1("View", View);
         }
