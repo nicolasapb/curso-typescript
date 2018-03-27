@@ -4,8 +4,9 @@ System.register([], function (exports_1, context_1) {
     function domInject(seletor) {
         return (target, key) => {
             let elemento;
-            const get = () => (!elemento) ? elemento = $(seletor) : elemento;
-            Object.defineProperty(target, key, { get });
+            Object.defineProperty(target, key, {
+                get: () => (!elemento) ? elemento = $(seletor) : elemento
+            });
         };
     }
     exports_1("domInject", domInject);
