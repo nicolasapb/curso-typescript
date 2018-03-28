@@ -43,6 +43,8 @@ System.register(["../views/index", "../models/index", "../helpers/decorators/ind
                 _ehDiaUtil(data) {
                     return data.getDay() !== DiaDaSemana.Sabado && data.getDay() !== DiaDaSemana.Domingo;
                 }
+                importaDados() {
+                }
             };
             __decorate([
                 index_3.domInject('#data')
