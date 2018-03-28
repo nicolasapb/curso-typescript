@@ -15,6 +15,7 @@ System.register(["./Negociacao", "./Negociacoes"], function (exports_1, context_
             },
             function (Negociacoes_1_1) {
                 exportStar_1(Negociacoes_1_1);
+                exportStar_1(Negociacoes_1_1);
             }
         ],
         execute: function () {
