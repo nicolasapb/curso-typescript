@@ -61,8 +61,11 @@ System.register(["../views/index", "../models/index", "../helpers/decorators/ind
                     };
                     this._service
                         .obterNegociacoes(isOK)
-                        .then(negociacoes => {
-                        negociacoes.forEach(negociacao => this._negociacoes.adiciona(negociacao));
+                        .then(negociacoesImportadas => {
+                        const negociacoesExistentes = this._negociacoes.paraArray();
+                        negociacoesImportadas
+                            .filter(negociacao => !negociacoesExistentes.some(jaExiste => negociacao.ehIgual(jaExiste)))
+                            .forEach(negociacao => this._negociacoes.adiciona(negociacao));
                         this._negociacoesView.update(this._negociacoes);
                         this._mensageView.update('Negociação adicionada com sucesso!');
                     });

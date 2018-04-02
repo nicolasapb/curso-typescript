@@ -1,6 +1,7 @@
 import { Negociacao } from "./Negociacao"
 import { Imprimivel } from "./Imprimivel"
-export class Negociacoes implements Imprimivel {
+import { Igualavel } from "./Igualavel"
+export class Negociacoes implements Imprimivel, Igualavel<Negociacoes> {
 
     private _negociacoes: Array<Negociacao> = []
 
@@ -15,6 +16,11 @@ export class Negociacoes implements Imprimivel {
     paraTexto(): void {
         console.log('Impressão')
         console.log(JSON.stringify(this._negociacoes))
+    }
+
+    ehIgual(negociacoes: Negociacoes): boolean {
+
+        return JSON.stringify(this._negociacoes) === JSON.stringify(negociacoes.paraArray())
     }
 
 }
