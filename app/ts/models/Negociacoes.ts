@@ -1,6 +1,6 @@
-import { Negociacao } from "./Negociacao";
-
-export class Negociacoes {
+import { Negociacao } from "./Negociacao"
+import { Imprimivel } from "./Imprimivel"
+export class Negociacoes extends Imprimivel {
 
     private _negociacoes: Array<Negociacao> = []
 
