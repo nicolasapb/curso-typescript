@@ -68,7 +68,8 @@ System.register(["../views/index", "../models/index", "../helpers/decorators/ind
                             .forEach(negociacao => this._negociacoes.adiciona(negociacao));
                         this._negociacoesView.update(this._negociacoes);
                         this._mensageView.update('Negociação adicionada com sucesso!');
-                    });
+                    })
+                        .catch(error => this._mensageView.update(error.message));
                 }
             };
             __decorate([

@@ -76,6 +76,7 @@ export class NegociacaoController {
                 this._negociacoesView.update(this._negociacoes)
                 this._mensageView.update('Negociação adicionada com sucesso!')
             })
+            .catch(error => this._mensageView.update(error.message))
 
     }
 }
