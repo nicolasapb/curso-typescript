@@ -50,34 +50,34 @@ export class NegociacaoController {
     }
     
     @throttle()
-    importaDados() {
-        
-        const isOK: HandlerFunction = (res:Response) => {
-            if (res.ok) {
-                return res
-            } else {
-                throw new Error(res.statusText)
+    async importaDados() {
+        try {
+
+            const isOK: HandlerFunction = (res: Response) => {
+                if (res.ok) {
+                    return res
+                } else {
+                    throw new Error(res.statusText)
+                }
             }
+
+            const negociacoesImportadas = await this._service.obterNegociacoes(isOK);
+
+            const negociacoesExistentes = this._negociacoes.paraArray()
+
+            negociacoesImportadas
+                .filter(negociacao =>
+                    !negociacoesExistentes.some(jaExiste =>
+                        negociacao.ehIgual(jaExiste)))
+                .forEach(negociacao =>
+                    this._negociacoes.adiciona(negociacao))
+
+            this._negociacoesView.update(this._negociacoes)
+            this._mensageView.update('Negociação adicionada com sucesso!')
+
+        } catch (error) {
+            this._mensageView.update(error.message)
         }
-        
-        this._service
-            .obterNegociacoes(isOK)
-            .then(negociacoesImportadas => { 
-                
-                const negociacoesExistentes = this._negociacoes.paraArray()
-
-                negociacoesImportadas
-                    .filter(negociacao => 
-                        !negociacoesExistentes.some(jaExiste => 
-                            negociacao.ehIgual(jaExiste)))
-                    .forEach(negociacao => 
-                        this._negociacoes.adiciona(negociacao))
-                    
-                this._negociacoesView.update(this._negociacoes)
-                this._mensageView.update('Negociação adicionada com sucesso!')
-            })
-            .catch(error => this._mensageView.update(error.message))
-
     }
 }
 
